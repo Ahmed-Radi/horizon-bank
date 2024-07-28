@@ -13,6 +13,7 @@ import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signIn, signUp } from "@/lib/actions/user.actions";
+import PlaidLink from "./PlaidLink";
 
 
 type Props = {
@@ -51,7 +52,20 @@ const AuthForm = ({ type }: Props) => {
 
 		try {
 			if (type === "sign-up") {
-				const newUser = await signUp(values);
+        // this will make all usr data not optional
+        const userData = {
+          firstName: firstName!,
+          lastName: lastName!,
+          address1: address1!,
+          city: city!,
+          state: state!,
+          postalCode: postalCode!,
+          dateOfBirth: dateOfBirth!,
+          ssn: ssn!,
+          email: email,
+          password: password,
+        }
+				const newUser = await signUp(userData);
 				setUser(newUser);
 			} else if (type === "sign-in") {
 				const response = await signIn({
@@ -100,7 +114,9 @@ const AuthForm = ({ type }: Props) => {
 				</div>
 			</header>
 			{user ? (
-				<div className='flex flex-col gap-4'></div>
+				<div className='flex flex-col gap-4'>
+          <PlaidLink user={user} variant="primary" />
+        </div>
 			) : (
 				<>
 					<Form {...form}>
