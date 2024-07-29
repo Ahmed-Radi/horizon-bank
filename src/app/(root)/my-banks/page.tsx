@@ -1,10 +1,7 @@
 import BankCard from '@/components/BankCard';
 import HeaderBox from '@/components/HeaderBox';
-import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
+import { getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
-import React from 'react'
-
-type Props = {}
 
 const MyBanks = async () => {
 
