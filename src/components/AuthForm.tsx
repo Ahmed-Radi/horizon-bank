@@ -15,7 +15,6 @@ import { useRouter } from "next/navigation";
 import { signIn, signUp } from "@/lib/actions/user.actions";
 import PlaidLink from "./PlaidLink";
 
-
 type Props = {
 	type: "sign-in" | "sign-up";
 };
@@ -115,6 +114,13 @@ const AuthForm = ({ type }: Props) => {
 			</header>
 			{user ? (
 				<div className='flex flex-col gap-4'>
+          <div className="flex flex-col gap-1">
+            <p><span className="text-blue-600">Note:</span> Bank email & password</p>
+            <p>
+              Username: user_good<br />
+              Password: pass_good
+            </p>
+          </div>
           <PlaidLink user={user} variant="primary" />
         </div>
 			) : (
